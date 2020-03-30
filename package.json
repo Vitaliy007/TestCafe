@@ -4,9 +4,9 @@
   "description": "test cafe project",
   "main": "index.js",
   "scripts": {
+    "test:chrome": "testcafe chrome",
     "test:chrome:headless": "testcafe chrome:headless ./tests",
     "test:chrome:mobile": "testcafe chrome:emulation:device=iphone X ./tests",
-    "test:chrome": "testcafe chrome ./tests",
     "test:firefox": "testcafe firefox ./tests"
   },
   "keywords": [
