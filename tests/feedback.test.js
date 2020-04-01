@@ -13,7 +13,7 @@ test('Submit the feedback form', async t =>{
     const feedbackSubmitText = Selector('.top_offset').innerText
     // Actions
     await t.click(feedbackButton)
-    await t.typeText(nameInput, 'Viatliy F')
+    await t.typeText(nameInput, 'Vitaliy F')
     await t.typeText(emailInput, 'nomail@mail.com')
     await t.typeText(subjectInput, 'testing')
     await t.typeText(commentInput, 'Just testing the feedback form')
