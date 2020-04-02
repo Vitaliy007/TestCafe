@@ -1,22 +1,12 @@
-import { Selector } from "testcafe";
-
+import { Selector } from "testcafe"
+import { login } from '../helper'
 fixture `Submit the payment`
     .page `http://zero.webappsecurity.com/`
 
 
-test.only
+test
 .before( async t => {
-    const signInButton = Selector('#signin_button')
-    await t.click(signInButton)
-    const usernameInput = Selector('#user_login')
-    const passwordInput = Selector('#user_password')
-    await t.typeText(usernameInput, 'username', {paste: true})
-    await t.typeText(passwordInput, 'password', {paste: true})
-    const submitButton = Selector('.btn-primary')
-    await t.click(submitButton)    
-    const accountSummaryTab = Selector('#account_summary_tab')
-    await t.expect(accountSummaryTab.exists).ok()
-
+    await login('username', 'password')
 })
 ('Add a payment', async t => {
     const paybillTablink = Selector('#pay_bills_tab')
