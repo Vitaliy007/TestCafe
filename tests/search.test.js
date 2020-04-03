@@ -8,7 +8,7 @@ const searchResultsPage = new SearchResultsPage()
 fixture `Send forgotten password test`
 .page `http://zero.webappsecurity.com/`
 
-test.only('Verify the serach is working', async t => {
+test('Verify the serach is working', async t => {
 
     //Actions
     navbar.search('online banking')
