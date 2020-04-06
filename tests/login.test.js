@@ -13,28 +13,22 @@ fixture `Login Test`
 test('User cannot login with inavlid credential', async t => {   
     await t.click(navbar.signInButton)
     loginPage.loginToApp('invalid name', 'invalid pass')
-
-    await login('invalid name', 'invalid pass')
-
-    const errorMessage = Selector('.alert-error').innerText
-    await t.expect(errorMessage).contains('Login and/or password are wrong.')
+    
+    await t.expect(loginPage.errorMessage.innerText).contains('Login and/or password are wrong.')
 })
 
 test('User can login', async t => {
     await t.click(navbar.signInButton)
+    await t.expect(loginPage.loginForm.exists).ok()
     loginPage.loginToApp('username', 'password')
     
     const accountSummaryTab = Selector('#account_summary_tab')
     await t.expect(accountSummaryTab.exists).ok()
 
-    const userIcon = Selector('.icon-user')
-    await t.click(userIcon)
+    await t.click(navbar.userIcon)
+    await t.click(navbar.logoutButton)
 
-    const logoutButton = Selector('#logout_link')
-    const signInButton = Selector(('#signin_button'))
-    await t.click(logoutButton)
-
-    await t.expect(logoutButton.exists).notOk()
-    await t.expect(signInButton.exists).ok()
+    await t.expect(navbar.logoutButton.exists).notOk()
+    await t.expect(navbar.signInButton.exists).ok()
 
 })
