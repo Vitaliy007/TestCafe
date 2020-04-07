@@ -1,24 +1,22 @@
-import { Selector } from "testcafe";
 import Navbar from '../page-objects/components/Navbar'
+import LoginPage from '../page-objects/pages/LoginPage'
+import ForgottenPasswordPage from '../page-objects/pages/ForgottenPasswordPage'
 
 const navbar = new Navbar()
+const loginPage = new LoginPage()
+const forgottenPasswordPage = new ForgottenPasswordPage()
 
 fixture `Send forgotten password test`
 .page `http://zero.webappsecurity.com/`
 
 
 test('User can send forgotten password to email', async t =>{
-    //const signInButton = Selector('#signin_button')
-    const linkToForgottenPass = Selector('a').withText("Forgot your password ?")
-    const emailInput = Selector('#user_email')
-    const message = Selector('div').innerText
-    // Actions
     await t.click(navbar.signInButton)
-    await t.click(linkToForgottenPass)
-    await t.typeText(emailInput, 'email@random.com', {paste: true})
+    await t.click(loginPage.forgottenPasswordLink)
+    await t.typeText(forgottenPasswordPage.emailInput, 'email@random.com', {paste: true, replace: true})
     await t.pressKey('enter')
 
     //Assertions
-    await t.expect(message).contains('email@random.com')
-    await t.expect(emailInput.exists).notOk()
+    await t.expect(forgottenPasswordPage.message.innerText).contains('email@random.com')
+    await t.expect(forgottenPasswordPage.emailInput.exists).notOk()
 })

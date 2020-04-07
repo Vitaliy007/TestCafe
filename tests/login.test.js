@@ -1,5 +1,4 @@
 import { Selector} from 'testcafe'
-//import { login } from '../helper'
 import Navbar from '../page-objects/components/Navbar'
 import LoginPage from '../page-objects/pages/LoginPage'
 
